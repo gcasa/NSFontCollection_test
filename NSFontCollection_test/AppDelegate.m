@@ -17,6 +17,19 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     // Insert code here to initialize your application
+    NSArray *names = [NSFontCollection allFontCollectionNames];
+    NSLog(@"names = %@",names);
+    NSFontCollection *fonts = [NSFontCollection fontCollectionWithName:
+                               NSFontCollectionAllFonts];
+    NSLog(@"fonts = %@",fonts);
+    NSData *d = [NSKeyedArchiver archivedDataWithRootObject:fonts
+                                      requiringSecureCoding:NO
+                                                      error:NULL];
+    BOOL result = [d writeToFile:@"archive.out" atomically:YES];
+    NSLog(@"%d", result);
+    
+    NSFontCollection *fun = [NSFontCollection fontCollectionWithName: @"Fun"];
+    NSLog(@"%@",fun.matchingDescriptors);
 }
 
 
