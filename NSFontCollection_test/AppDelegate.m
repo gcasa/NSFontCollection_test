@@ -30,6 +30,11 @@
     
     NSFontCollection *fun = [NSFontCollection fontCollectionWithName: @"Fun"];
     NSLog(@"%@",fun.matchingDescriptors);
+    NSString *fileName = [[NSBundle mainBundle] pathForResource:@"PDF" ofType:@"collection"];
+    NSData *data = [NSData dataWithContentsOfFile:fileName];
+    NSKeyedUnarchiver *coder = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    NSFontCollection *pdf = [[NSFontCollection alloc] initWithCoder: coder];
+    NSLog(@"PDF = %@", pdf);
 }
 
 
